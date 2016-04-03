@@ -1,0 +1,18 @@
+# Pink Turtle Space Service runs in a Docker container named "pinkspace".
+# It serves files from the pinkturtle.space volume via HTTPS on 443.
+# The container is built from pinkturtle.space.image and it automatically
+# removed when it is stopped.
+
+[Unit]
+Description=Pink Turtle Space Service
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStartPre=-/usr/bin/docker kill pinkspace
+ExecStartPre=-/usr/bin/docker rm pinkspace
+ExecStart=/usr/bin/docker run --name pinkspace --rm=true --publish 443:443 --volume /home/core/pinkturtle.space:/pinkturtle.space pinkturtle.space.image
+ExecStop=/usr/bin/docker stop pinkspace
+
+[Install]
+WantedBy=multi-user.target

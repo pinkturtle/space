@@ -1,0 +1,14 @@
+• SSL               contains X.509 certificates, secret key and secret DH params.
+• nginx.conf        NGINX configuration.
+• space.service     systemd service unit file for the CoreOS host system.
+• Dockerfile        defines build process for the space machine.
+• Flightplan.coffee defines methods to control the machine with the fly command.
+• Makefile          defines tasks to generate various SSL files.
+• package.json      defines package dependencies.
+• README            this file.
+
+0 git clone git@github.com:pinkturtle/space.git
+1 npm install ... to get dependencies.
+2 make ... to generate SSL files.
+3 fly setup:space
+4 fly start:space
